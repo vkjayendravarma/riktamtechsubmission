@@ -1,0 +1,562 @@
+{
+	"info": {
+		"_postman_id": "f4ef5602-9b7f-47e9-866f-6fee601fb12c",
+		"name": "Local",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27195838"
+	},
+	"item": [
+		{
+			"name": "Groups",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Test group 1\",\n    \"description\": \"Test description 1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/groups/create",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"groups",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update group info",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Test group\",\n    \"description\": \"Test description 1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/groups/manage/updategroupinfo/:groupid",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"groups",
+								"manage",
+								"updategroupinfo",
+								":groupid"
+							],
+							"variable": [
+								{
+									"key": "groupid",
+									"value": "{{groupId}}"
+								}
+							]
+						},
+						"description": "accessable by group admin and admin user"
+					},
+					"response": []
+				},
+				{
+					"name": "Update group access",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userEmail\": \"user3@gmail.com\",\n    \"role\": \"read_only\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/groups/manage/access/:groupid",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"groups",
+								"manage",
+								"access",
+								":groupid"
+							],
+							"variable": [
+								{
+									"key": "groupid",
+									"value": "{{groupId}}"
+								}
+							]
+						},
+						"description": "accessable by group admin and admin user\n\n`role:` `read_only` or `write` or `admin` or `revoke`\n\n`revoke` will remove group access to the user"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete group",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/groups/delete/:groupid",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"groups",
+								"delete",
+								":groupid"
+							],
+							"variable": [
+								{
+									"key": "groupid",
+									"value": "{{groupId}}"
+								}
+							]
+						},
+						"description": "accessable by group admin and admin user, this wipes all traces related to the group"
+					},
+					"response": []
+				},
+				{
+					"name": "Search group users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/groups/search/users/:groupid?search=user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"groups",
+								"search",
+								"users",
+								":groupid"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "user"
+								}
+							],
+							"variable": [
+								{
+									"key": "groupid",
+									"value": "{{groupId}}"
+								}
+							]
+						},
+						"description": "empty search or removing search from params with return all the users who has access to the group. accesable by users with minimum of read level access\n\nsearch is done with email address and name match"
+					},
+					"response": []
+				},
+				{
+					"name": "Get user groups",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/groups",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"groups"
+							]
+						},
+						"description": "Returns all groups user has access to"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"keshav\",\n    \"email\": \"user6@gmail.com\",\n    \"password\": \"random\",\n    \"isAdmin\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"register"
+							]
+						},
+						"description": "Only admin user can create a new user\n\n`isAdmin`: `true` or `false`"
+					},
+					"response": []
+				},
+				{
+					"name": "update password",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    // \"email\": \"user10@gmail.com\",\n    \"password\": \"randomer\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/passwordchange",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"passwordchange"
+							]
+						},
+						"description": "Normal user can directly change his password. Admin has access to change password for any user with adding email address"
+					},
+					"response": []
+				},
+				{
+					"name": "User privilege change",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user10@gmail.com\",\n    \"isAdmin\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/privilegechange",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"privilegechange"
+							]
+						},
+						"description": "Admin has access to change user privilage\n\n`isAdmin` : `true` or `false`"
+					},
+					"response": []
+				},
+				{
+					"name": "user name change",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"keshav varma\"\n    // \"email\": \"user1@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/users/namechange",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"namechange"
+							]
+						},
+						"description": "Normal user can directly change his name. Admin has access to change name for any user with adding email addres"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Messaging",
+			"item": [
+				{
+					"name": "Create new message",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"hi\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/messaging/create/:groupid",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"messaging",
+								"create",
+								":groupid"
+							],
+							"variable": [
+								{
+									"key": "groupid",
+									"value": "{{groupId}}"
+								}
+							]
+						},
+						"description": "System admin, group admin and user with write access can create new message."
+					},
+					"response": []
+				},
+				{
+					"name": "get all message of group",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/messaging/get/:groupid",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"messaging",
+								"get",
+								":groupid"
+							],
+							"variable": [
+								{
+									"key": "groupid",
+									"value": "{{groupId}}"
+								}
+							]
+						},
+						"description": "System admin, group admin and users with write access and read access can read messages."
+					},
+					"response": []
+				},
+				{
+					"name": "Toggle like",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/messaging/togglelike/:groupid/:messageId",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"messaging",
+								"togglelike",
+								":groupid",
+								":messageId"
+							],
+							"variable": [
+								{
+									"key": "groupid",
+									"value": "{{groupId}}"
+								},
+								{
+									"key": "messageId",
+									"value": "{{messageId}}"
+								}
+							]
+						},
+						"description": "System admin, group admin and users with write access and read access can like messages."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let res = pm.response.json();",
+							"pm.collectionVariables.set(\"userToken\",res[\"token\"]);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"user3@gmail.com\",\n    \"password\": \"random\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{userToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://127.0.0.1:5000",
+			"type": "string"
+		},
+		{
+			"key": "userToken",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNjUwODBkZTBkM2U5ZjM3YTM1MzU5YWYzIiwiZXhwIjoxNjk1MDU2NDgyfQ.tkOWKMUrQtusozF1M0X6MsjdkA-UAB2kgkUxjiSGvcA",
+			"type": "string"
+		},
+		{
+			"key": "groupId",
+			"value": "650c9047fc35b0dbdf1bb6dd",
+			"type": "string"
+		},
+		{
+			"key": "messageId",
+			"value": "650ca07be048461401000822",
+			"type": "string"
+		}
+	]
+}
