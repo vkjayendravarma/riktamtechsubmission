@@ -11,9 +11,7 @@ from flask_mongoengine import mongoengine
 from src.services import userService
 
 @app.route("/users/register", methods=["POST"])
-@authorization
-@isAdminCheck
-def register(user, isAdmin):
+def register():
     req = request.get_json()
     try:
         name = req["name"]

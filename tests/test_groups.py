@@ -41,8 +41,8 @@ def client_groups():
 def setup_groups_teardown():
     with app.app_context():
         yield
-        connection = MongoClient("mongodb://localhost:27017")
-        connection.drop_database("test")     
+        connection = MongoClient(TestConfig.MONGODB_SETTINGS["host"])
+        connection.drop_database(TestConfig.MONGODB_SETTINGS["db"])     
 
 def test_setup_groups(client_groups):
     userService.createUser(consts.admin["name"], consts.admin["email"], consts.admin["password"], consts.admin["isAdmin"])
